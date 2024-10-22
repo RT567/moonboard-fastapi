@@ -1,0 +1,14 @@
+plan:
+for a bunch of climbs recreate them with the python script
+check if the climbs recreated with the python script are graded the same as the originals
+
+first:
+do a few by hand with the grade singular climb script
+
+second:
+automate the creation of climbs with python script based on the OTHER script which parses climbs to holds and compare en masse
+
+
+checking what the parsing script looks like
+
+python create-all-images.py grid_coordinates.csv C:\Users\robbi\OneDrive\Desktop\top\uni\capstone\scikit\python-created

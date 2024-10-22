@@ -27,6 +27,7 @@ class GradeResponse(BaseModel):
 
 @app.post("/grade_climb", response_model=GradeResponse)
 async def grade_climb(Request: HoldsRequest):
+    print(__file__)
     return{"grade": "V5"}
 
 
