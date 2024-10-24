@@ -9,6 +9,7 @@ from fastapi.middleware.cors import CORSMiddleware
 origins = [
     "*",  # For testing purposes; replace with your frontend URL in production
     # e.g., "https://your-username.github.io",
+    "https://rt567.github.io/moonboard/"
 ]
 
 app = FastAPI()

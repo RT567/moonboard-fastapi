@@ -18,6 +18,13 @@ from torchvision import transforms, io
 # seems to grade too much stuff as V3, need to test better...?
 # potentially images are not created the correct way for the model expects
 
+script_dir = os.path.dirname(os.path.abspath(__file__))
+background_image_path = os.path.join(script_dir, "mb2019.jpg")
+blue_ring_path = os.path.join(script_dir, "blue-ring-thick.png")
+red_ring_path = os.path.join(script_dir, "red-ring-thick.png")
+green_ring_path = os.path.join(script_dir, "green-ring-thick.png")
+model_params_path = os.path.join(script_dir, "params", "epoch_13.pth")
+
 if len(sys.argv) < 3:
     print("\nUsage:\n > python grade-singular-climb-from-holdlist.py <list of holds>")
     print("\nExample:\n > python E:\\not-messy\\software-development\\moonboard-classifier\\python-image-creator\\grade-singular-climb-from-holdlist.py A1 A2\n")
@@ -44,10 +51,10 @@ model.fc = torch.nn.Sequential(
 
 model = model.to(device)
 
-file_path = r'.\python-image-creator\params\epoch_13.pth'
+# file_path = r'.\python-image-creator\params\epoch_13.pth'
 
-if os.path.exists(file_path):
-    model.load_state_dict(torch.load(file_path))
+if os.path.exists(model_params_path):
+    model.load_state_dict(torch.load(model_params_path))
     model.eval()
 else:
     print("Cannot find parameter file location as specified in the code...")
@@ -77,13 +84,12 @@ holds = args.holds
 
 print(holds)
 
-background = Image.open("mb2019.jpg")
-
-# Open and resize the ring images
 ring_size = (76, 76)  # Set the desired size for the rings
-blue = Image.open("blue-ring-thick.png").resize(ring_size)
-red = Image.open("red-ring-thick.png").resize(ring_size)
-green = Image.open("green-ring-thick.png").resize(ring_size)
+
+background = Image.open(background_image_path)
+blue = Image.open(blue_ring_path).resize(ring_size)
+red = Image.open(red_ring_path).resize(ring_size)
+green = Image.open(green_ring_path).resize(ring_size)
 
 background_copy = background.copy()
 
