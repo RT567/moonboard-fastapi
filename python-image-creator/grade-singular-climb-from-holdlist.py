@@ -55,7 +55,7 @@ model = model.to(device)
 # file_path = r'.\python-image-creator\params\epoch_13.pth'
 
 if os.path.exists(model_params_path):
-    model.load_state_dict(torch.load(model_params_path))
+    model.load_state_dict(torch.load(model_params_path, map_location=torch.device('cpu')))
     model.eval()
 else:
     print("Cannot find parameter file location as specified in the code...")
