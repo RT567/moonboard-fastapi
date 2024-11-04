@@ -39,7 +39,8 @@ def hold_to_coords(hold):
     return int(x), int(y)
 
 # define the pytorch "device" paramter
-device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+#device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
+device = torch.device("cpu")
 
 model = models.googlenet(weights = None, aux_logits=False, init_weights=True)
 num_classes = 10 # V3 to V12+
